@@ -8,9 +8,9 @@
 class ZeroCrossing
 {
 public:
-    zerocrossing();
+    ZeroCrossing();
 
-    void detect(std::array<float, bufferSize> wave);
+    void detect(std::array<float, bufferSize> wave, int range);
 
 private:
     std::vector<int> peaks;
