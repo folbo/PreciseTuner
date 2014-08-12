@@ -1,11 +1,15 @@
-#include "mainwindow.h"
-#include <QApplication>
+#include <QtWidgets>
+#include "microphone_rec.h"
+#include "precisetuner.h"
+#include "constans.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QApplication app(argc, argv);
 
-    return a.exec();
+
+    PreciseTuner tuner;
+    tuner.show();
+
+    return app.exec();
 }

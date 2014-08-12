@@ -1,18 +1,28 @@
 #ifndef GRAPHFFT_H
 #define GRAPHFFT_H
 
-#include <QWidget>
+#include <QtWidgets>
+#include "qcustomplot.h"
+#include "constans.h"
+#include "fft.h"
+#include "microphone_rec.h"
 
 class GraphFFT : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GraphFFT(QWidget *parent = 0);
+    GraphFFT(QWidget *parent = 0);
+    void setData(std::array<float, bufferSize> buffer);
 
-signals:
+private:
+     QCustomPlot *plot;
 
-public slots:
+     QVector<double> x;
+     QVector<double> y;
 
+     int width, height;
+
+     MicrophoneRec  *ptr;
 };
 
 #endif // GRAPHFFT_H
