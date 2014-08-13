@@ -15,6 +15,8 @@ public:
     void execute();
     void compute_powers();
 
+    float find_base_freq();
+
     std::array<float, fftN/2> get_powers() { return powers; }
 
 private:

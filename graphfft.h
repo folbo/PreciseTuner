@@ -14,15 +14,18 @@ public:
     GraphFFT(QWidget *parent = 0);
     void setData(std::array<float, bufferSize> buffer);
 
+    float baseFreq() { return base_freq; }
+
 private:
      QCustomPlot *plot;
+
 
      QVector<double> x;
      QVector<double> y;
 
      int width, height;
 
-     MicrophoneRec  *ptr;
+     float base_freq;
 };
 
 #endif // GRAPHFFT_H

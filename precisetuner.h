@@ -17,7 +17,9 @@ public slots:
 
 private:
     GraphFFT    *graph;
-    MicrophoneRec recorder;
+    QLabel *freqLabel;
+
+    MicrophoneRec *recorder;
 
 };
 

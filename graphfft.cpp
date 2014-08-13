@@ -33,12 +33,15 @@ void GraphFFT::setData(std::array<float, bufferSize> buffer)
     fourier.take_input(buffer.data(), bufferSize);
     fourier.execute();
     fourier.compute_powers();
+    base_freq = fourier.find_base_freq();
     std::array<float, fftN/2> fft_data = fourier.get_powers();
 
     for(int i = 0; i < fftN/2; i++)
     {
         y[i] = fft_data[i];
     }
+
+
 
     plot->graph(0)->setData(x, y);
     plot->replot();

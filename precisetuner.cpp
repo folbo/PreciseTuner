@@ -3,14 +3,15 @@
 
 PreciseTuner::PreciseTuner()
 {
-    recorder.create_sound();
-    recorder.start_capturing();
+    recorder = new MicrophoneRec();
+    recorder->create_sound();
+    recorder->start_capturing();
 
     QVBoxLayout *tunerLayout = new QVBoxLayout;
 
     graph = new GraphFFT(this);
 
-
+    freqLabel = new QLabel("xD",this);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateGraph()));
 
@@ -19,6 +20,7 @@ PreciseTuner::PreciseTuner()
     updateGraph();
 
     tunerLayout->addWidget(graph);
+    tunerLayout->addWidget(freqLabel);
     setLayout(tunerLayout);
     setWindowTitle("Tuner");
     resize(800, 650);
@@ -26,7 +28,9 @@ PreciseTuner::PreciseTuner()
 
 void PreciseTuner::updateGraph()
 {
-    std::array<float, bufferSize> bufor = recorder.get_waveData();
+    std::array<float, bufferSize> bufor = recorder->get_waveData();
     graph->setData(bufor);
+
+    freqLabel->setText(QString::number(graph->baseFreq()));
 }
 

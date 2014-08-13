@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     fft.cpp \
     microphone_rec.cpp \
     graphfft.cpp \
-    zerocrossing.cpp
+    zerocrossing.cpp \
+    autocorrelation.cpp
 
 HEADERS += \
     precisetuner.h \
@@ -27,7 +28,8 @@ HEADERS += \
     microphone_rec.h \
     constans.h \
     graphfft.h \
-    zerocrossing.h
+    zerocrossing.h \
+    autocorrelation.h
 
 LIBS += /usr/lib/libfftw3.so \
     /usr/lib/libfmodex.so

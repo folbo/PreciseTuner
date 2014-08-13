@@ -48,3 +48,20 @@ void fft::compute_powers()
         powers[i] = sqrt(out[i][0]*out[i][0] + out[i][1]*out[i][1]);
     }
 }
+
+float fft::find_base_freq()
+{
+    //TODO: finding peak is bad idea, the point is to find FIRST peak after low pass
+
+    float max = 0;
+    int max_i = 0;
+    for(int i = 0; i < fftN/2; i++)
+    {
+        if(powers[i] > max)
+        {
+            max = powers[i];
+            max_i = i;
+        }
+    }
+    return (float)max_i*sampleRate/fftN;
+}
