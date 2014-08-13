@@ -14,8 +14,7 @@ public:
     GraphFFT(QWidget *parent = 0);
     void setData(std::array<float, bufferSize> buffer);
 
-    float baseFreq() { return base_freq; }
-
+    float baseFreq();
 private:
      QCustomPlot *plot;
 
@@ -25,7 +24,7 @@ private:
 
      int width, height;
 
-     float base_freq;
+
 };
 
 #endif // GRAPHFFT_H

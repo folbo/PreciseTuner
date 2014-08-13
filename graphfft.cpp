@@ -33,7 +33,7 @@ void GraphFFT::setData(std::array<float, bufferSize> buffer)
     fourier.take_input(buffer.data(), bufferSize);
     fourier.execute();
     fourier.compute_powers();
-    base_freq = fourier.find_base_freq();
+
     std::array<float, fftN/2> fft_data = fourier.get_powers();
 
     for(int i = 0; i < fftN/2; i++)
@@ -45,4 +45,22 @@ void GraphFFT::setData(std::array<float, bufferSize> buffer)
 
     plot->graph(0)->setData(x, y);
     plot->replot();
+}
+
+float GraphFFT::baseFreq()
+{
+    //TODO: finding peak is bad idea, the point is to find FIRST peak after low pass
+
+    float max = 0;
+    int max_i = 0;
+
+    for(int i = 0; i < fftN/2; i++)
+    {
+        if(y[i] > max)
+        {
+            max = y[i];
+            max_i = i;
+        }
+    }
+    return (float)max_i*sampleRate/fftN;
 }
