@@ -5,6 +5,7 @@
 #include "qcustomplot.h"
 #include "graphfft.h"
 #include "microphone_rec.h"
+#include "autocorrelation.h"
 
 class PreciseTuner : public QWidget
 {
@@ -20,6 +21,8 @@ private:
     QLabel *freqLabel;
 
     MicrophoneRec *recorder;
+
+    AutoCorrelation *autocorel;
 
 };
 

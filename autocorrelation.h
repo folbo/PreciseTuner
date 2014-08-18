@@ -11,7 +11,12 @@ class AutoCorrelation
 public:
     AutoCorrelation();
 
-    void analyse(std::array<float, bufferSize> wave);
+    float getFrequency() { return freq; };
+
+    void analyse(std::array<float, bufferSize> wave, int max_samples);
+
+private:
+    float freq;
 };
 
 #endif // AUTOCORRELATION_H

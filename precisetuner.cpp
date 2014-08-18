@@ -1,11 +1,13 @@
 #include "precisetuner.h"
 #include "fft.h"
-
+#include <math.h>
 PreciseTuner::PreciseTuner()
 {
     recorder = new MicrophoneRec();
     recorder->create_sound();
     recorder->start_capturing();
+
+    autocorel = new AutoCorrelation();
 
     QVBoxLayout *tunerLayout = new QVBoxLayout;
 
@@ -31,6 +33,10 @@ void PreciseTuner::updateGraph()
     std::array<float, bufferSize> bufor = recorder->get_waveData();
     graph->setData(bufor);
 
-    freqLabel->setText(QString::number(graph->baseFreq()));
+    if(bufor[0] != 0 && bufor[2] != 0) //first loop makes array null o_O
+        autocorel->analyse(bufor, bufferSize/*ceil(sampleRate/graph->baseFreq())*2 */); //TODO: ogranicznik FFT
+
+    //freqLabel->setText(QString::number(graph->baseFreq()));
+    freqLabel->setText(QString::number(autocorel->getFrequency()));
 }
 
