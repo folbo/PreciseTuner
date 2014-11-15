@@ -2,8 +2,8 @@
 #define CONSTANS_H
 
 
-const int bufferSize = 512;
-const int sampleRate = 8000;
+const int bufferSize = 2048;
+const int sampleRate = 44100;
 const int fftN = 8192;
 
 

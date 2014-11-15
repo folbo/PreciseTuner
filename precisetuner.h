@@ -6,6 +6,7 @@
 #include "graphfft.h"
 #include "microphone_rec.h"
 #include "autocorrelation.h"
+#include "graphwave.h"
 
 class PreciseTuner : public QWidget
 {
@@ -18,6 +19,7 @@ public slots:
 
 private:
     GraphFFT    *graph;
+    GraphWave   *graph_wave;
     QLabel *freqLabel;
 
     MicrophoneRec *recorder;

@@ -12,6 +12,7 @@ PreciseTuner::PreciseTuner()
     QVBoxLayout *tunerLayout = new QVBoxLayout;
 
     graph = new GraphFFT(this);
+    graph_wave = new GraphWave(this);
 
     freqLabel = new QLabel("xD",this);
     QTimer *timer = new QTimer(this);
@@ -22,6 +23,7 @@ PreciseTuner::PreciseTuner()
     updateGraph();
 
     tunerLayout->addWidget(graph);
+    tunerLayout->addWidget(graph_wave);
     tunerLayout->addWidget(freqLabel);
     setLayout(tunerLayout);
     setWindowTitle("Tuner");
@@ -32,9 +34,10 @@ void PreciseTuner::updateGraph()
 {
     std::array<float, bufferSize> bufor = recorder->get_waveData();
     graph->setData(bufor);
+    graph_wave->setData(bufor);
 
     if(bufor[0] != 0 && bufor[2] != 0) //first loop makes array null o_O
-        autocorel->analyse(bufor, bufferSize/*ceil(sampleRate/graph->baseFreq())*2 */); //TODO: ogranicznik FFT
+        autocorel->analyse(bufor, ceil(sampleRate/graph->baseFreq())/2 ); //TODO: ogranicznik FFT
 
     //freqLabel->setText(QString::number(graph->baseFreq()));
     freqLabel->setText(QString::number(autocorel->getFrequency()));
